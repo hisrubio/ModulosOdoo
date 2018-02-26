@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="concesionario.list">
+      <field name="name">concesionario list</field>
+      <field name="model">concesionario.concesionario</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="concesionario.action_window_vehiculo">
+      <field name="name">vehiculo</field>
+      <field name="res_model">concesionario.vehiculo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="concesionario.action_window_conductor">
+      <field name="name">conductor</field>
+      <field name="res_model">concesionario.vehiculo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+
+    
+
+    <!-- Top menu item -->
+    
+    <menuitem name="concesionario" id="concesionario.menu_root"/>
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Menu" id="concesionario.menu_1" parent="concesionario.menu_root"/>
+   
+    <!-- actions -->
+    
+    <menuitem name="vehiculo" id="concesionario.menu_1_vehiculo" parent="concesionario.menu_1"
+              action="concesionario.action_window_vehiculo"/>
+    
+   
+  </data>
+</odoo>
