@@ -1,22 +1,86 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="concesionario.list">
-      <field name="name">concesionario list</field>
-      <field name="model">concesionario.concesionario</field>
+    <!--Trees -->
+    <record model="ir.ui.view" id="concesionario.list_vehiculo">
+      <field name="name">list vehiculo</field>
+      <field name="model">concesionario.vehiculo</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+          <field name="marca"/>
+          <field name="color"/>
+          <field name="numero_asientos"/>
+          <field name="idsconductores"/>
+          <field name="idsviajes"/>
+          <field name="idseguro"/>
         </tree>
       </field>
     </record>
-    -->
+   
+    <record model="ir.ui.view" id="concesionario.list_viaje">
+      <field name="name">list viaje</field>
+      <field name="model">concesionario.viaje</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="idvehiculo"/>
+          <field name="provincia_origen"/>
+          <field name="provincia_destino"/>
+          <field name="fecha_realizacion"/>
+          <field name="duracion"/>
+          <field name="masDeDos"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="concesionario.list_seguro">
+      <field name="name">list seguro</field>
+      <field name="model">base.empresa</field>    
+        <field name="inherit_id" ref="baseModule.empresa_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='nombreEmpresa']" position="after">
+                <field name="fecha_vencimiento" />
+                <field name="idsvehiculos" />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="concesionario.list_conductor">
+      <field name="name">list conductor</field>
+      <field name="model">concesionario.conductor</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombre"/>
+          <field name="dni"/>
+          <field name="idsvehiculos"/>
+          <field name="nombreEntidad"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="concesionario.list_provincia">
+      <field name="name">list provincia</field>
+      <field name="model">concesionario.provincia</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombre_provincia"/>
+          <field name="viajes_origen"/>
+          <field name="viajes_destino"/>
+        </tree>
+      </field>
+    </record>
+   <!-- forms -->
+    <record model="ir.ui.view" id="alumno_form_view_seguro">
+        <field name="name">seguro form</field>
+        <field name="model">base.empresa</field>    
+        <field name="inherit_id" ref="baseModule.empresa_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='nombreEmpresa']" position="after">
+                <field name="fecha_vencimiento" />
+                <field name="idsvehiculos" />
+            </xpath>
+        </field>
+    </record>
 
     <!-- actions opening views on models -->
-    
     <record model="ir.actions.act_window" id="concesionario.action_window_vehiculo">
       <field name="name">vehiculo</field>
       <field name="res_model">concesionario.vehiculo</field>
@@ -25,12 +89,27 @@
 
     <record model="ir.actions.act_window" id="concesionario.action_window_conductor">
       <field name="name">conductor</field>
-      <field name="res_model">concesionario.vehiculo</field>
+      <field name="res_model">concesionario.conductor</field>
       <field name="view_mode">tree,form</field>
     </record>
    
+   <record model="ir.actions.act_window" id="concesionario.action_window_seguro">
+      <field name="name">seguro</field>
+      <field name="res_model">base.empresa</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
+    <record model="ir.actions.act_window" id="concesionario.action_window_viaje">
+      <field name="name">viaje</field>
+      <field name="res_model">concesionario.viaje</field>
+      <field name="view_mode">tree,form</field>
+    </record>
     
+    <record model="ir.actions.act_window" id="concesionario.action_window_provincia">
+      <field name="name">provincia</field>
+      <field name="res_model">concesionario.provincia</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
     <!-- Top menu item -->
     
@@ -44,6 +123,14 @@
     
     <menuitem name="vehiculo" id="concesionario.menu_1_vehiculo" parent="concesionario.menu_1"
               action="concesionario.action_window_vehiculo"/>
+    <menuitem name="conductor" id="concesionario.menu_1_conductor" parent="concesionario.menu_1"
+              action="concesionario.action_window_conductor"/>
+    <menuitem name="seguro" id="concesionario.menu_1_seguro" parent="concesionario.menu_1"
+              action="concesionario.action_window_seguro"/>
+    <menuitem name="viaje" id="concesionario.menu_1_viaje" parent="concesionario.menu_1"
+              action="concesionario.action_window_viaje"/>
+    <menuitem name="provincia" id="concesionario.menu_1_provincia" parent="concesionario.menu_1"
+              action="concesionario.action_window_provincia"/>
     
    
   </data>
