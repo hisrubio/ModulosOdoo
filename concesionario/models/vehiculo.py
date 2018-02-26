@@ -18,11 +18,10 @@ class vehiculo(models.Model):
     idseguro=fields.Many2one('base.empresa',string="Seguro")
 
     #campo computado
-    # fecha_revision = fields.Date(compute="comprobar", store=True)
+    fecha_revision = fields.Date(compute="comprobar", store=True)
 
-    # @api.onchange('numero_asientos')
-    # def comprobar(self):
-    #     fechaActual=datetime.now()
-    #     d1 = datetime.strptime("1500", "%d").date()
-    #     if( self.numero_asientos > 4):
-    #         self.fecha_revision = fechaActual.day + d1
+    @api.onchange('numero_asientos')
+    def comprobar(self):
+        fechaActual=datetime.now()
+        if( self.numero_asientos > 4):
+            self.fecha_revision = fechaActual + timedelta(days=1500)

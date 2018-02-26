@@ -12,6 +12,7 @@
           <field name="idsconductores"/>
           <field name="idsviajes"/>
           <field name="idseguro"/>
+          <field name="fecha_revision"/>
         </tree>
       </field>
     </record>
@@ -48,7 +49,7 @@
       <field name="model">concesionario.conductor</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="nombre"/>
+          <field name="name"/>
           <field name="dni"/>
           <field name="idsvehiculos"/>
           <field name="nombreEntidad"/>
