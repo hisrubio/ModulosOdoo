@@ -11,7 +11,7 @@
           <field name="numero_asientos"/>
           <field name="idsconductores"/>
           <field name="idsviajes"/>
-          <field name="idseguro"/>
+          <field name="idseguro" />
           <field name="fecha_revision"/>
         </tree>
       </field>
@@ -81,6 +81,30 @@
         </field>
     </record>
 
+    <!-- calendars -->
+
+    <record id="view_calendar_seguro_task" model="ir.ui.view"> 
+      <field name="model">base.empresa</field>    
+      <field name="arch" type="xml"> 
+        <calendar date_start="fecha_vencimiento" > 
+          <field name="idsvehiculos" /> 
+        </calendar> 
+      </field> 
+    </record> 
+    
+    <record id="view_calendar_viaje_task" model="ir.ui.view"> 
+      <field name="model">concesionario.viaje</field>    
+      <field name="arch" type="xml"> 
+        <calendar date_start="fecha_realizacion" > 
+          <field name="provincia_origen" /> 
+          <field name="provincia_destino" /> 
+          <field name="fecha_realizacion" /> 
+          <field name="duracion" /> 
+          <field name="masDeDos" /> 
+        </calendar> 
+      </field> 
+    </record> 
+
     <!-- actions opening views on models -->
     <record model="ir.actions.act_window" id="concesionario.action_window_vehiculo">
       <field name="name">vehiculo</field>
@@ -97,13 +121,13 @@
    <record model="ir.actions.act_window" id="concesionario.action_window_seguro">
       <field name="name">seguro</field>
       <field name="res_model">base.empresa</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,calendar</field>
     </record>
 
     <record model="ir.actions.act_window" id="concesionario.action_window_viaje">
       <field name="name">viaje</field>
       <field name="res_model">concesionario.viaje</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,calendar</field>
     </record>
     
     <record model="ir.actions.act_window" id="concesionario.action_window_provincia">
